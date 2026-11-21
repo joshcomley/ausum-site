@@ -77,7 +77,7 @@ DESIGN TECHNIQUES (why they fit a swimmer)
       "a1 a1 a1 a1 a1 a1 a1 a1 a1 a2 a2 a2 a2 a2 a2 a2 a2 a2 a3 a3 a3 a3 a3 a3 a3 a3 a3 photo photo photo photo photo photo photo photo photo"
       "a1 a1 a1 a1 a1 a1 a1 a1 a1 a2 a2 a2 a2 a2 a2 a2 a2 a2 a3 a3 a3 a3 a3 a3 a3 a3 a3 photo photo photo photo photo photo photo photo photo"
       "dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk aut aut aut aut aut aut aut aut aut aut aut aut photo photo photo photo photo photo photo photo photo";
-    animation:rise 1.2s ease-out both}
+    animation:rise .6s ease-out both}
   /* squarer landscape screens (4:3 tablets): give the photo a wider strip so the face is never cropped */
   @media (max-aspect-ratio:3/2){
     .poster{grid-template-areas:
@@ -90,8 +90,27 @@ DESIGN TECHNIQUES (why they fit a swimmer)
       "a1 a1 a1 a1 a1 a1 a1 a1 a2 a2 a2 a2 a2 a2 a2 a2 a3 a3 a3 a3 a3 a3 a3 a3 photo photo photo photo photo photo photo photo photo photo photo photo"
       "dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk aut aut aut aut aut aut aut aut aut aut aut photo photo photo photo photo photo photo photo photo photo photo photo"}
   }
-  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-  @media (prefers-reduced-motion:reduce){.poster{animation:none}}
+  @keyframes rise{from{opacity:0}to{opacity:1}}
+
+  /* ---------- signature motion: one swim length, about 4 s, plays once ----------
+     The lane ropes stretch across the pool from the start wall; the 200 is drawn behind the swimmer:
+     the 2, the gold medal (its waves), then the last 0 at the far wall. Pictures only; words just fade in. */
+  .pool::before{animation:swim 4s cubic-bezier(.45,0,.35,1) both}
+  @keyframes swim{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+  @media (orientation:portrait){
+    .pool::before{animation-name:swimdown}
+    @keyframes swimdown{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+  }
+  .numeral .draw{stroke-dasharray:1 1;animation:draw 1.4s cubic-bezier(.45,0,.35,1) both}
+  .numeral .d2{animation-delay:.3s}
+  .numeral .d0{animation-delay:2.6s;animation-duration:1.6s}
+  .numeral .dw{animation-delay:2s;animation-duration:1.3s}
+  .numeral .medal{animation:fadein 1s ease-in-out 1.5s both}
+  @keyframes draw{from{stroke-dashoffset:1}99%{stroke-dashoffset:0;stroke-dasharray:1 1}to{stroke-dashoffset:0;stroke-dasharray:none}}
+  @keyframes fadein{from{opacity:0}to{opacity:1}}
+  @media (prefers-reduced-motion:reduce){
+    .poster,.pool::before,.numeral .draw,.numeral .medal{animation:none}
+  }
 
   /* masthead */
   .mast{grid-area:mast;background:var(--navy);color:var(--white);display:flex;align-items:center;
@@ -251,19 +270,19 @@ DESIGN TECHNIQUES (why they fit a swimmer)
       <title>200</title>
       <g fill="none" stroke="#0a1f44" stroke-width="64" stroke-linejoin="miter">
         <!-- 2 -->
-        <path d="M32 110 A78 78 0 0 1 188 110 C188 196 32 250 32 368 L220 368"/>
+        <path class="draw d2" pathLength="1" d="M32 110 A78 78 0 0 1 188 110 C188 196 32 250 32 368 L220 368"/>
         <!-- 0 (stadium) at the far right -->
-        <rect x="732" y="32" width="156" height="336" rx="78"/>
+        <rect class="draw d0" pathLength="1" x="732" y="32" width="156" height="336" rx="78"/>
       </g>
       <!-- 0 as a gold medal -->
-      <g transform="translate(260 0)">
+      <g class="medal" transform="translate(260 0)">
         <circle cx="200" cy="200" r="200" fill="#ffc21a"/>
         <circle cx="200" cy="200" r="168" fill="none" stroke="#d99a00" stroke-width="8"/>
         <circle cx="200" cy="200" r="146" fill="none" stroke="#d99a00" stroke-width="4"/>
         <g fill="none" stroke="#0a1f44" stroke-width="15" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M92 150 q27 -32 54 0 t54 0 t54 0 t54 0"/>
-          <path d="M92 202 q27 -32 54 0 t54 0 t54 0 t54 0"/>
-          <path d="M92 254 q27 -32 54 0 t54 0 t54 0 t54 0"/>
+          <path class="draw dw" pathLength="1" d="M92 150 q27 -32 54 0 t54 0 t54 0 t54 0"/>
+          <path class="draw dw" pathLength="1" d="M92 202 q27 -32 54 0 t54 0 t54 0 t54 0"/>
+          <path class="draw dw" pathLength="1" d="M92 254 q27 -32 54 0 t54 0 t54 0 t54 0"/>
         </g>
         <path d="M70 120 A150 150 0 0 1 130 62" fill="none" stroke="#ffe48a" stroke-width="12" stroke-linecap="round"/>
       </g>

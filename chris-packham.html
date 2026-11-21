@@ -40,7 +40,7 @@ DESIGN TECHNIQUES (why they fit a naturalist)
  - Photo mounted like a field photograph: bone-white print border, two translucent strips of tape, a slight tilt, soft shadow; face untouched, crop positioned on his face.
  - Type: Fraunces (warm old-style display serif, like a printed natural-history title), Atkinson Hyperlegible (designed for readability, used for every
    word the child reads), Caveat (handwriting, only for labels/dates/headings). Text only ever sits on plain cream or plain white card - no pattern behind words.
- - Calm: one 1.2 s fade at load, off for prefers-reduced-motion; no other motion; warm paper palette, ink on cream contrast above 12:1.
+ - Calm: ONE signature animation (the kestrel sketched live: pen outline draws, watercolour soaks in, label lines reach the bird; about 4.4 s, once), words fade in within 0.6 s; none of it for prefers-reduced-motion; no other motion; warm paper palette, ink on cream contrast above 12:1.
 -->
 <html lang="en">
 <head>
@@ -81,10 +81,27 @@ body{
   box-shadow:0 0 0 1px rgba(60,40,10,.28),0 2px 0 rgba(255,255,255,.35) inset,0 6px 18px rgba(60,40,10,.35);
   padding:var(--pad);
   display:grid;gap:calc(var(--pad)*.5) calc(var(--pad)*.8);
-  animation:settle 1.2s ease-out both;
 }
-@keyframes settle{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.page{animation:none}}
+
+/* ---------- the one signature animation: the kestrel is sketched live in the notebook ----------
+   The words fade in within 0.6 s so they can be read at once. Then, over about 4.4 s in total:
+   1) the pen outline draws itself   (0.2 s - 2.4 s)
+   2) the watercolour soaks in       (2.0 s - 3.8 s), a little soft at first, like paint on paper
+   3) the label lines reach to the bird (3.3 s - 4.4 s)
+   It plays once and stays still. With prefers-reduced-motion: reduce none of this is applied,
+   so the finished picture shows straight away. */
+@media (prefers-reduced-motion:no-preference){
+  .page{animation:pg-in .6s ease-out both}
+  .bird .d{animation:pen var(--t,1s) cubic-bezier(.4,.1,.3,1) var(--s,0s) backwards}
+  .bird .w{animation:wash var(--t,1.2s) cubic-bezier(.35,.05,.3,1) var(--s,2s) backwards}
+  .bird .f{animation:fade var(--t,.5s) ease-in-out var(--s,2s) backwards}
+}
+@keyframes pg-in{from{opacity:0}to{opacity:1}}
+@keyframes pen{
+  from{stroke-dasharray:1 2;stroke-dashoffset:1;stroke-linecap:butt}
+  to{stroke-dasharray:1 2;stroke-dashoffset:0;stroke-linecap:butt}}
+@keyframes wash{from{opacity:0;filter:blur(2.5px)}to{opacity:1;filter:blur(0)}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
 
 /* wrappers only matter on short landscape phones */
 .c1,.c2,.c3{display:contents}
@@ -310,11 +327,11 @@ h1{font-family:var(--f-disp);font-weight:800;font-size:2.55em;line-height:1;lett
   <figure class="bird">
     <svg viewBox="0 0 340 470" role="img" aria-label="A pen and watercolour drawing of a kestrel perched on a branch, with a grey head, a brown back with dark spots, and a long tail.">
   <defs>
-    <path id="b-tail" d="M150,296 C176,330 212,380 236,438 L200,444 C170,408 134,356 116,304 Z"/>
-    <path id="b-sil" d="M100,94 C96,62 120,38 152,40 C182,42 200,66 198,94 C216,120 242,160 242,222 C242,264 228,296 206,310 C182,324 140,320 118,292 C92,258 80,198 94,152 C98,138 102,128 108,122 C100,114 100,102 100,94 Z"/>
-    <path id="b-wing" d="M182,100 C232,114 254,172 248,238 C244,278 226,304 204,330 C178,302 160,246 160,190 C158,150 166,122 182,100 Z"/>
-    <path id="b-beak" d="M106,78 C92,78 80,92 86,108 C94,102 102,98 114,96 Z"/>
-    <path id="b-branch" d="M-4,358 C70,348 150,346 220,342 C276,338 316,330 338,322 L338,336 C312,346 270,356 216,360 C150,366 70,370 -4,380 Z"/>
+    <path id="b-tail" pathLength="1" d="M150,296 C176,330 212,380 236,438 L200,444 C170,408 134,356 116,304 Z"/>
+    <path id="b-sil" pathLength="1" d="M100,94 C96,62 120,38 152,40 C182,42 200,66 198,94 C216,120 242,160 242,222 C242,264 228,296 206,310 C182,324 140,320 118,292 C92,258 80,198 94,152 C98,138 102,128 108,122 C100,114 100,102 100,94 Z"/>
+    <path id="b-wing" pathLength="1" d="M182,100 C232,114 254,172 248,238 C244,278 226,304 204,330 C178,302 160,246 160,190 C158,150 166,122 182,100 Z"/>
+    <path id="b-beak" pathLength="1" d="M106,78 C92,78 80,92 86,108 C94,102 102,98 114,96 Z"/>
+    <path id="b-branch" pathLength="1" d="M-4,358 C70,348 150,346 220,342 C276,338 316,330 338,322 L338,336 C312,346 270,356 216,360 C150,366 70,370 -4,380 Z"/>
     <clipPath id="c-tail"><use href="#b-tail"/></clipPath>
     <clipPath id="c-sil"><use href="#b-sil"/></clipPath>
     <linearGradient id="g-cap" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b6c7cf"/><stop offset="1" stop-color="#8aa0ac"/></linearGradient>
@@ -324,14 +341,14 @@ h1{font-family:var(--f-disp);font-weight:800;font-size:2.55em;line-height:1;lett
   </defs>
 
   <!-- washes: flat colour laid slightly off the pen line, like real watercolour -->
-  <g transform="translate(3,3)">
+  <g transform="translate(3,3)" class="w" style="--s:2.6s;--t:1s">
     <use href="#b-tail" fill="#93a6b0"/>
     <g clip-path="url(#c-tail)">
       <path d="M130,382 L280,414" stroke="#2c2f35" stroke-width="26" fill="none"/>
       <path d="M130,438 L290,456" stroke="#fbf6e6" stroke-width="14" fill="none"/>
     </g>
   </g>
-  <g transform="translate(2,2)">
+  <g transform="translate(2,2)" class="w" style="--s:2.3s;--t:1s">
     <use href="#b-branch" fill="url(#g-branch)"/>
     <path d="M292,344 C302,322 308,302 326,280" fill="none" stroke="#876544" stroke-width="6" stroke-linecap="round"/>
     <path d="M326,280 C338,266 338,250 332,238 C318,246 312,264 326,280Z" fill="#9fc27a"/>
@@ -340,31 +357,31 @@ h1{font-family:var(--f-disp);font-weight:800;font-size:2.55em;line-height:1;lett
     <path d="M24,328 C12,326 4,316 6,302 C18,304 26,314 24,328Z" fill="#9fc27a"/>
   </g>
   <g transform="translate(3,3)">
-    <use href="#b-sil" fill="url(#g-belly)"/>
-    <g clip-path="url(#c-sil)"><path d="M60,20 L240,20 L240,120 C206,130 172,132 140,128 C120,124 104,116 92,110 Z" fill="url(#g-cap)"/></g>
-    <use href="#b-wing" fill="url(#g-wing)"/>
-    <ellipse cx="110" cy="82" rx="7" ry="6" fill="#e6b422"/>
-    <use href="#b-beak" fill="#47423c"/>
+    <use href="#b-sil" fill="url(#g-belly)" class="w" style="--s:2s;--t:1.2s"/>
+    <g clip-path="url(#c-sil)" class="w" style="--s:2.4s;--t:1.2s"><path d="M60,20 L240,20 L240,120 C206,130 172,132 140,128 C120,124 104,116 92,110 Z" fill="url(#g-cap)"/></g>
+    <use href="#b-wing" fill="url(#g-wing)" class="w" style="--s:2.6s;--t:1.2s"/>
+    <ellipse cx="110" cy="82" rx="7" ry="6" fill="#e6b422" class="w" style="--s:3s;--t:.6s"/>
+    <use href="#b-beak" fill="#47423c" class="w" style="--s:3s;--t:.6s"/>
   </g>
 
   <!-- pen line, roughened a little -->
   <g filter="url(#wobble)" fill="none" stroke="#2a241d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-    <use href="#b-tail"/>
-    <path d="M168,330 C186,356 204,384 218,416 M146,320 C160,344 176,372 192,402" stroke-width="1" opacity=".4"/>
-    <use href="#b-branch"/>
-    <path d="M292,344 C302,322 308,302 326,280 M64,366 C56,348 42,336 24,328" stroke-width="2"/>
-    <path d="M326,280 C338,266 338,250 332,238 C318,246 312,264 326,280Z M303,314 C316,306 322,294 320,284 C306,288 299,302 303,314Z M24,328 C12,326 4,316 6,302 C18,304 26,314 24,328Z" stroke-width="1.8"/>
-    <path d="M334,240 C328,256 324,268 326,280 M318,288 C312,298 307,306 303,314" stroke-width="1" opacity=".6"/>
-    <path d="M30,364 l9,-1 M96,358 l10,-1 M150,356 l8,-1 M196,352 l9,-1 M250,348 l9,-2 M120,366 l9,0 M220,358 l8,-1" stroke-width="1.3" opacity=".55"/>
+    <use href="#b-tail" class="d" style="--s:1.3s;--t:1s"/>
+    <path class="d" style="--s:1.9s;--t:.6s" pathLength="1" d="M168,330 C186,356 204,384 218,416 M146,320 C160,344 176,372 192,402" stroke-width="1" opacity=".4"/>
+    <use href="#b-branch" class="d" style="--s:.2s;--t:1.2s"/>
+    <path class="d" style="--s:1s;--t:.6s" pathLength="1" d="M292,344 C302,322 308,302 326,280 M64,366 C56,348 42,336 24,328" stroke-width="2"/>
+    <path class="d" style="--s:1.2s;--t:.6s" pathLength="1" d="M326,280 C338,266 338,250 332,238 C318,246 312,264 326,280Z M303,314 C316,306 322,294 320,284 C306,288 299,302 303,314Z M24,328 C12,326 4,316 6,302 C18,304 26,314 24,328Z" stroke-width="1.8"/>
+    <path class="d" style="--s:1.5s;--t:.4s" pathLength="1" d="M334,240 C328,256 324,268 326,280 M318,288 C312,298 307,306 303,314" stroke-width="1" opacity=".6"/>
+    <path class="d" style="--s:1.3s;--t:.5s" pathLength="1" d="M30,364 l9,-1 M96,358 l10,-1 M150,356 l8,-1 M196,352 l9,-1 M250,348 l9,-2 M120,366 l9,0 M220,358 l8,-1" stroke-width="1.3" opacity=".55"/>
 
     <!-- legs and toes (dark under-stroke) -->
-    <path d="M140,308 L138,350 M168,310 L170,352" stroke-width="10"/>
-    <path d="M138,350 C128,351 120,354 112,357 M138,350 C140,356 139,360 136,363 M138,350 C147,353 153,357 157,360 M170,352 C180,354 190,358 196,362 M170,352 C172,358 171,362 168,366 M170,352 C162,354 156,357 152,360" stroke-width="8"/>
+    <path class="d" style="--s:1.6s;--t:.5s" pathLength="1" d="M140,308 L138,350 M168,310 L170,352" stroke-width="10"/>
+    <path class="d" style="--s:1.9s;--t:.4s" pathLength="1" d="M138,350 C128,351 120,354 112,357 M138,350 C140,356 139,360 136,363 M138,350 C147,353 153,357 157,360 M170,352 C180,354 190,358 196,362 M170,352 C172,358 171,362 168,366 M170,352 C162,354 156,357 152,360" stroke-width="8"/>
 
-    <use href="#b-sil"/>
-    <use href="#b-wing"/>
-    <path d="M116,152 l3,10 M128,144 l3,12 M140,140 l2,12 M108,178 l3,12 M121,172 l3,12 M134,168 l3,12 M147,162 l2,12 M110,206 l3,12 M124,200 l3,12 M137,196 l3,12 M118,232 l3,11 M132,228 l3,12 M146,224 l3,12 M132,256 l3,10 M146,252 l2,11 M140,278 l3,9" stroke="#7a4524" stroke-width="2.2"/>
-    <g fill="#2c2018" stroke="none">
+    <use href="#b-sil" class="d" style="--s:.3s;--t:1.5s"/>
+    <use href="#b-wing" class="d" style="--s:.9s;--t:1.2s"/>
+    <path class="d" style="--s:1.7s;--t:.7s" pathLength="1" d="M116,152 l3,10 M128,144 l3,12 M140,140 l2,12 M108,178 l3,12 M121,172 l3,12 M134,168 l3,12 M147,162 l2,12 M110,206 l3,12 M124,200 l3,12 M137,196 l3,12 M118,232 l3,11 M132,228 l3,12 M146,224 l3,12 M132,256 l3,10 M146,252 l2,11 M140,278 l3,9" stroke="#7a4524" stroke-width="2.2"/>
+    <g fill="#2c2018" stroke="none" class="f" style="--s:2s;--t:.5s">
       <path transform="translate(198,132)" d="M0,0 l7,2.5 l-5,6z"/><path transform="translate(222,152)" d="M0,0 l7,2.5 l-5,6z"/>
       <path transform="translate(186,154)" d="M0,0 l7,2.5 l-5,6z"/><path transform="translate(208,174)" d="M0,0 l7,2.5 l-5,6z"/>
       <path transform="translate(232,186)" d="M0,0 l7,2.5 l-5,6z"/><path transform="translate(186,186)" d="M0,0 l7,2.5 l-5,6z"/>
@@ -374,29 +391,31 @@ h1{font-family:var(--f-disp);font-weight:800;font-size:2.55em;line-height:1;lett
       <path transform="translate(204,268)" d="M0,0 l7,2.5 l-5,6z"/><path transform="translate(218,282)" d="M0,0 l7,2.5 l-5,6z"/>
       <path transform="translate(186,280)" d="M0,0 l7,2.5 l-5,6z"/><path transform="translate(198,304)" d="M0,0 l7,2.5 l-5,6z"/>
     </g>
-    <path d="M198,170 C206,204 208,246 200,306 M216,162 C228,204 228,240 218,288" stroke-width="1" opacity=".45"/>
-    <path d="M128,98 C132,110 138,120 136,130" stroke="#2a2a2e" stroke-width="7"/>
-    <use href="#b-beak"/>
-    <path d="M96,98 C98,100 104,100 110,98" stroke-width="1.4"/>
-    <path d="M112,70 C124,62 140,60 154,64 M166,50 C178,52 190,62 195,76" stroke-width="1.1" opacity=".5"/>
+    <path class="d" style="--s:1.9s;--t:.5s" pathLength="1" d="M198,170 C206,204 208,246 200,306 M216,162 C228,204 228,240 218,288" stroke-width="1" opacity=".45"/>
+    <path class="d" style="--s:1.5s;--t:.4s" pathLength="1" d="M128,98 C132,110 138,120 136,130" stroke="#2a2a2e" stroke-width="7"/>
+    <use href="#b-beak" class="d" style="--s:.7s;--t:.6s"/>
+    <path class="d" style="--s:1s;--t:.3s" pathLength="1" d="M96,98 C98,100 104,100 110,98" stroke-width="1.4"/>
+    <path class="d" style="--s:1.2s;--t:.5s" pathLength="1" d="M112,70 C124,62 140,60 154,64 M166,50 C178,52 190,62 195,76" stroke-width="1.1" opacity=".5"/>
   </g>
   <!-- legs in yellow over the pen line, then claws -->
-  <g transform="translate(1,1)">
+  <g transform="translate(1,1)" class="w" style="--s:3s;--t:.7s">
     <path d="M140,308 L138,350 M168,310 L170,352" fill="none" stroke="#e3b02a" stroke-width="5.5" stroke-linecap="round"/>
     <path d="M138,350 C128,351 120,354 112,357 M138,350 C140,356 139,360 136,363 M138,350 C147,353 153,357 157,360 M170,352 C180,354 190,358 196,362 M170,352 C172,358 171,362 168,366 M170,352 C162,354 156,357 152,360" fill="none" stroke="#e3b02a" stroke-width="3.8" stroke-linecap="round"/>
     <g fill="#2a241d"><circle cx="112" cy="357" r="2.6"/><circle cx="136" cy="363" r="2.6"/><circle cx="157" cy="360" r="2.6"/><circle cx="196" cy="362" r="2.6"/><circle cx="168" cy="366" r="2.6"/><circle cx="152" cy="360" r="2.6"/></g>
   </g>
   <!-- eye -->
+  <g class="f" style="--s:2.1s;--t:.5s">
   <circle cx="126" cy="84" r="9" fill="#e6b422" stroke="#2a241d" stroke-width="1.6"/>
   <circle cx="126" cy="84" r="5.2" fill="#1d1814"/>
   <circle cx="124" cy="82" r="1.6" fill="#fff"/>
+  </g>
 
   <!-- specimen leader lines -->
   <g class="leaders" fill="none" stroke="#274769" stroke-width="1.6" stroke-linecap="round">
-    <path d="M58,60 C80,62 102,72 116,82"/>
-    <circle cx="118" cy="83" r="2.4" fill="#274769" stroke="none"/>
-    <path d="M270,176 C258,184 250,190 240,196"/>
-    <circle cx="238" cy="197" r="2.4" fill="#274769" stroke="none"/>
+    <path class="d" style="--s:3.3s;--t:.9s" pathLength="1" d="M58,60 C80,62 102,72 116,82"/>
+    <circle class="f" style="--s:4s;--t:.4s" cx="118" cy="83" r="2.4" fill="#274769" stroke="none"/>
+    <path class="d" style="--s:3.4s;--t:.9s" pathLength="1" d="M270,176 C258,184 250,190 240,196"/>
+    <circle class="f" style="--s:4s;--t:.4s" cx="238" cy="197" r="2.4" fill="#274769" stroke="none"/>
   </g>
 </svg>
 

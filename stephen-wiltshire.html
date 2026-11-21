@@ -30,7 +30,8 @@ DESIGN TECHNIQUES AND WHY THEY FIT
    tipped-in album corners, "Fig. 1" caption.
  - Different grid per aspect ratio: plate-left editorial grid on landscape, name-beside-plate stack on portrait, three-column
    catalogue strip on phone landscape; the panorama is cropped with preserveAspectRatio slice so the bridge always sits mid-page.
- - One quiet motion: the skyline outline draws itself once (1.3 s), details fade in; none under prefers-reduced-motion.
+ - One quiet motion: a pen draws the skyline once, left to right, over about 4 s (the way he draws a panorama from memory); the
+   windows and hatching are inked just behind the pen. Nothing else moves; none under prefers-reduced-motion.
 -->
 <html lang="en">
 <head>
@@ -137,10 +138,12 @@ h1 .sn{font-weight:600}
 .skyline .wt{stroke-width:1.3;opacity:.4}
 .skyline .deck{fill:var(--paper);stroke-width:1.5}
 @media (prefers-reduced-motion:no-preference){
-  .skyline .contour{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.3s cubic-bezier(.45,.05,.4,1) .1s forwards}
-  .skyline .detail{animation:ink 1.2s ease .25s both}
-  @keyframes draw{to{stroke-dashoffset:0}}
-  @keyframes ink{from{opacity:0}to{opacity:1}}
+  /* the pen crosses the page left to right in ~4 s; the dash keyframes are sampled so the pen keeps pace with the
+     page-width reveal of the detail layer, which follows ~0.2 s behind (windows and hatching inked just after the line) */
+  .skyline .contour{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 4s linear .1s forwards}
+  .skyline .detail{clip-path:inset(0 100% 0 0) view-box;animation:ink 4s cubic-bezier(.45,.1,.55,.9) .3s forwards}
+  @keyframes draw{0%{stroke-dashoffset:1.0000}2%{stroke-dashoffset:0.9984}4%{stroke-dashoffset:0.9964}6%{stroke-dashoffset:0.9940}8%{stroke-dashoffset:0.9891}10%{stroke-dashoffset:0.9860}12%{stroke-dashoffset:0.9825}14%{stroke-dashoffset:0.9786}16%{stroke-dashoffset:0.9729}18%{stroke-dashoffset:0.9678}20%{stroke-dashoffset:0.9434}22%{stroke-dashoffset:0.9279}24%{stroke-dashoffset:0.9198}26%{stroke-dashoffset:0.9063}28%{stroke-dashoffset:0.8691}30%{stroke-dashoffset:0.8294}32%{stroke-dashoffset:0.7786}34%{stroke-dashoffset:0.7505}36%{stroke-dashoffset:0.6961}38%{stroke-dashoffset:0.6643}40%{stroke-dashoffset:0.6280}42%{stroke-dashoffset:0.5944}44%{stroke-dashoffset:0.5465}46%{stroke-dashoffset:0.5173}48%{stroke-dashoffset:0.4880}50%{stroke-dashoffset:0.4773}52%{stroke-dashoffset:0.4666}54%{stroke-dashoffset:0.4373}56%{stroke-dashoffset:0.4081}58%{stroke-dashoffset:0.3916}60%{stroke-dashoffset:0.3227}62%{stroke-dashoffset:0.2691}64%{stroke-dashoffset:0.2318}66%{stroke-dashoffset:0.1958}68%{stroke-dashoffset:0.1739}70%{stroke-dashoffset:0.1483}72%{stroke-dashoffset:0.1168}74%{stroke-dashoffset:0.0962}76%{stroke-dashoffset:0.0727}78%{stroke-dashoffset:0.0637}80%{stroke-dashoffset:0.0511}82%{stroke-dashoffset:0.0430}84%{stroke-dashoffset:0.0343}86%{stroke-dashoffset:0.0299}88%{stroke-dashoffset:0.0225}90%{stroke-dashoffset:0.0181}92%{stroke-dashoffset:0.0140}94%{stroke-dashoffset:0.0059}96%{stroke-dashoffset:0.0036}98%{stroke-dashoffset:0.0016}100%{stroke-dashoffset:0.0000}}
+  @keyframes ink{from{clip-path:inset(0 100% 0 0) view-box}to{clip-path:inset(0 0 0 0) view-box}}
 }
 
 /* ---------- portrait: name beside the plate ---------- */
