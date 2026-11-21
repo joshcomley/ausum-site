@@ -1,0 +1,422 @@
+<!doctype html>
+<!--
+AUSUM - Person of the day: Chris Packham (evidence grade A)
+Design: "A naturalist's field notebook" - kraft cover, cream page, pen-and-watercolour kestrel, taped field photograph.
+
+FACT SOURCES (all checked 21 Nov 2026)
+ - Wikipedia, "Chris Packham" (?action=raw wikitext + cited sources):
+   * born 4 May 1961, Southampton, Hampshire; English naturalist, television presenter and author; occupation list includes nature photographer.
+   * "Television career": presenting began in 1986 with the BBC1 children's programme The Really Wild Show (1986-1995).
+   * "Since June 2009, he has co-presented the BBC Two nature programme Springwatch - and its sister programmes Autumnwatch and Winterwatch"
+     (BBC Springwatch blog, 18 March 2009, "Springwatch 2009 - new presenter team announced").
+   * "Honours": appointed CBE in the 2019 New Year Honours "for services to nature conservation" (London Gazette issue 62507, 29 Dec 2018, supp. N9).
+   * "Personal life": "In his teenage years, he was responsible for the care of a kestrel" (cited to the BBC film "Asperger's and Me");
+     "As his work with the therapist concluded in 2005, Packham was diagnosed with Asperger syndrome" (Radio Times, 18 May 2016).
+   * October 2017 BBC documentary "Chris Packham: Asperger's and Me" (bbc.co.uk/programmes/b09b1zbb) - he talks openly about it; he became a National Autistic
+     Society ambassador in Oct 2017; presented the 2023 BBC documentary "Inside Our Autistic Minds".
+   * 2018: BBC Two "The Real T-Rex" - "he attempted to rebuild the most authentic Tyrannosaurus rex ever seen, from the bones up" (aired 2 Jan 2018;
+     BBC Two programme page / Broadcast, Daily Mirror and Everything Dinosaur coverage of the film agree: built from a real specimen's skeleton by
+     palaeontologist Dave Hone's team). This is the "Did you know?" fact.
+ - Wikipedia, "Common kestrel" (?action=raw): scientific name Falco tinnunculus; "keen eyesight enabling them to spot small prey from a distance";
+   "When hunting, the common kestrel characteristically hovers about 10-20 m above the ground" - the two drawing labels.
+ - Penguin Books blurb for "Fingers in the Sparkle Jar" (2016 memoir): as an unusual young boy in the 1970s he had a young kestrel from a nest, a friendship
+   that "would change him forever". CORRECTION to the brief ("as a boy he raised a kestrel"): Wikipedia dates it to his TEENAGE years, and says the bird was taken
+   from the wild (not something to praise for a child), so the page only says he "looked after a kestrel as a teenager".
+ - Diagnosis wording: he was diagnosed as an ADULT (2005, aged 44, after therapy begun in 2003), with Asperger syndrome - which is now part of the autism spectrum.
+   The page says exactly that and does not say "as a child".
+ - Photo: Wikimedia Commons "File:Chris Packham, People's Walk for Wildlife 2018 (44125363624) (cropped).jpg", Garry Knight from London, England,
+   CC BY 2.0, taken 22 Sep 2018 at the People's Walk for Wildlife rally, Whitehall.
+
+DESIGN TECHNIQUES (why they fit a naturalist)
+ - Field-notebook / Grinnell field-journal language (Berkeley MVZ journal conventions, natural-history-museum specimen labels): dated entries,
+   figure numbers ("Fig. 1", "Fig. 2"), Latin binomial in italics under the drawing, a label card pinned to the page for the "Did you know?" fact.
+ - Open two-page spread on wide screens (photograph and drawing on the left page, written notes on the right, shadowed gutter between); one
+   single page on portrait screens. Named grid-template-areas switch between spread, single page and a compact three-column layout for short landscape phones.
+ - Pen-and-watercolour kestrel drawn by hand in inline SVG: ink outline roughened with a low-scale feTurbulence displacement (a wobbly pen line), flat
+   washes kept slightly OFF the outline (the real watercolour mis-registration), colour taken from a male common kestrel (blue-grey head, chestnut back with black
+   spots, black tail band). Specimen annotations in handwriting (Caveat) with leader lines and dots.
+ - Graphic devices: a flight feather (generated from a rachis and barb function) as the logo mark and as a large pale wash on the page; a three-toed bird track
+   used as a bullet - it is also the print of a theropod dinosaur, which quietly ties to the T. rex fact.
+ - Photo mounted like a field photograph: bone-white print border, two translucent strips of tape, a slight tilt, soft shadow; face untouched, crop positioned on his face.
+ - Type: Fraunces (warm old-style display serif, like a printed natural-history title), Atkinson Hyperlegible (designed for readability, used for every
+   word the child reads), Caveat (handwriting, only for labels/dates/headings). Text only ever sits on plain cream or plain white card - no pattern behind words.
+ - Calm: one 1.2 s fade at load, off for prefers-reduced-motion; no other motion; warm paper palette, ink on cream contrast above 12:1.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ausum - Chris Packham, person of the day</title>
+<meta name="description" content="Ausum, person of the day: Chris Packham, naturalist and TV presenter, drawn as a page from a field notebook.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Caveat:wght@500;700&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --kraft:#b8975f; --kraft-d:#8f7143;
+  --paper:#f8f1dd; --paper-d:#ece0bf; --card:#fffdf5;
+  --ink:#2a241d; --pen:#274769; --terra:#963d1b; --moss:#4b6b3a;
+  --wash-g:#cfe0b0; --wash-o:#f1d58e; --wash-b:#bcd0d8;
+  --f-disp:'Fraunces',Georgia,'Times New Roman',serif;
+  --f-body:'Atkinson Hyperlegible','Segoe UI',Verdana,sans-serif;
+  --f-hand:'Caveat','Segoe Print','Bradley Hand',cursive;
+  --fs:clamp(15px, min(3.4vw, 2.05vh), 26px);
+  --pad:clamp(10px, 1.7vmin, 26px);
+  --edge:clamp(5px, 1.2vmin, 14px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{
+  height:100dvh;width:100%;background:var(--kraft);color:var(--ink);
+  font-family:var(--f-body);font-size:var(--fs);line-height:1.34;
+  -webkit-font-smoothing:antialiased;
+}
+.defs{position:absolute;width:0;height:0}
+
+/* ---------- the notebook ---------- */
+.cover{position:fixed;inset:0;padding:var(--edge);
+  background:linear-gradient(135deg,#c2a26b,var(--kraft) 55%,#ad8c55)}
+.page{position:relative;height:100%;width:100%;
+  background:var(--paper);border-radius:6px 14px 14px 6px;
+  box-shadow:0 0 0 1px rgba(60,40,10,.28),0 2px 0 rgba(255,255,255,.35) inset,0 6px 18px rgba(60,40,10,.35);
+  padding:var(--pad);
+  display:grid;gap:calc(var(--pad)*.5) calc(var(--pad)*.8);
+  animation:settle 1.2s ease-out both;
+}
+@keyframes settle{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.page{animation:none}}
+
+/* wrappers only matter on short landscape phones */
+.c1,.c2,.c3{display:contents}
+
+/* ---------- default: portrait = one single page ---------- */
+.page{
+  grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  grid-template-rows:auto auto minmax(0,1fr) auto auto auto auto;
+  grid-template-areas:
+    "mast mast"
+    "who who"
+    "photo bird"
+    "notes notes"
+    "dyk dyk"
+    "aut aut"
+    "credit credit";
+}
+.fold,.feather-lay{display:none}
+
+/* ---------- masthead ---------- */
+.mast{grid-area:mast;display:flex;align-items:baseline;gap:.15em .7em;flex-wrap:wrap;
+  padding-bottom:.3em;border-bottom:2px solid var(--ink);position:relative}
+.mast::after{content:"";position:absolute;left:0;right:0;bottom:-6px;border-bottom:1px solid var(--ink);opacity:.6}
+.brand{display:flex;align-items:center;gap:.25em;font-family:var(--f-disp);font-weight:800;font-size:1.5em;line-height:1;letter-spacing:.01em}
+.brand svg{width:.9em;height:1.4em;transform:rotate(28deg);flex:none}
+.kick{font-family:var(--f-hand);font-weight:700;font-size:1.25em;color:var(--terra);line-height:1;white-space:nowrap}
+.mast time{margin-left:auto;font-family:var(--f-hand);font-weight:700;font-size:1.25em;color:var(--pen);line-height:1;white-space:nowrap}
+
+/* ---------- name ---------- */
+.who{grid-area:who;position:relative;margin-bottom:.3em}
+h1{font-family:var(--f-disp);font-weight:800;font-size:2.55em;line-height:1;letter-spacing:-.01em;
+   font-variation-settings:"opsz" 110;text-wrap:balance}
+.title{display:inline-block;position:relative;margin-top:.15em;padding:.02em .5em .06em .35em;
+  font-family:var(--f-hand);font-weight:700;font-size:1.42em;line-height:1.1;color:var(--ink);z-index:0}
+.title::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--wash-g);
+  border-radius:48% 52% 45% 55% / 62% 48% 58% 42%;transform:rotate(-.8deg)}
+
+/* ---------- photograph ---------- */
+.print{grid-area:photo;position:relative;justify-self:center;align-self:center;
+  height:96%;max-width:96%;aspect-ratio:5/6;min-height:0;margin:0;
+  background:#fbf8ee;padding:5% 5% 14%;
+  box-shadow:0 1px 1px rgba(40,25,5,.3),0 5px 14px rgba(40,25,5,.32);
+  transform:rotate(-1.6deg);z-index:2}
+.print img{display:block;width:100%;height:100%;object-fit:cover;object-position:38% 22%;
+  background:var(--paper-d)}
+.print figcaption{position:absolute;right:7%;bottom:2.5%;font-family:var(--f-hand);font-weight:700;color:var(--pen);font-size:1.05em;line-height:1}
+.tape{position:absolute;width:26%;height:8%;background:rgba(232,208,142,.84);
+  box-shadow:0 1px 2px rgba(60,40,10,.25);z-index:3;
+  clip-path:polygon(0 0,100% 0,96% 25%,100% 50%,96% 75%,100% 100%,0 100%,4% 75%,0 50%,4% 25%)}
+.tape.a{left:-3%;top:-1.5%;transform:rotate(-36deg)}
+.tape.b{right:-3%;top:-1.5%;transform:rotate(36deg)}
+
+/* ---------- kestrel drawing ---------- */
+.bird{grid-area:bird;position:relative;justify-self:center;align-self:center;
+  height:100%;max-width:100%;aspect-ratio:340/470;min-height:0;margin:0}
+.bird svg{display:block;width:100%;height:100%;overflow:visible}
+.bird .lab{position:absolute;font-family:var(--f-hand);font-weight:700;color:var(--pen);
+  font-size:1.02em;line-height:.95;white-space:nowrap}
+.bird .lab.eyes{left:0;top:-1%}
+.bird .lab.hover{left:80%;top:33%;text-align:left}
+.bird .fig{position:absolute;left:0;right:0;bottom:0;text-align:center;font-family:var(--f-hand);font-weight:700;font-size:1.02em;color:var(--pen);line-height:1;white-space:nowrap}
+.bird .fig i{font-family:var(--f-disp);font-weight:600;font-size:.82em;color:var(--ink)}
+@media (max-width:520px){.bird .fig i{display:none}}
+@media (max-width:359px){.bird .fig{display:none}}
+@media (max-width:440px) and (orientation:portrait){.bird .lab,.bird .leaders{display:none}}
+
+/* ---------- field notes ---------- */
+.notes{grid-area:notes;position:relative}
+.notes h2,.dyk h2{font-family:var(--f-hand);font-weight:700;font-size:1.45em;line-height:1;color:var(--terra);
+  display:flex;align-items:center;gap:.3em}
+.notes h2 svg,.dyk h2 svg{width:.8em;height:.95em;flex:none}
+.notes ol{list-style:none;margin-top:.15em}
+.notes li{display:grid;grid-template-columns:3.1em minmax(0,1fr);align-items:baseline;gap:.6em;
+  padding:.26em 0;border-top:1.5px dashed rgba(42,36,29,.38)}
+.notes li:first-child{border-top:0}
+.notes .d{font-family:var(--f-hand);font-weight:700;font-size:1.5em;line-height:1;color:var(--pen)}
+.notes b{font-weight:700}
+@media (max-height:620px) and (orientation:portrait){.notes li.opt{display:none}}
+
+/* ---------- Did you know? label card ---------- */
+.dyk{grid-area:dyk;position:relative;background:var(--card);border:1.5px solid var(--ink);
+  padding:.5em .8em .55em;box-shadow:2px 3px 0 rgba(42,36,29,.18);transform:rotate(-.5deg);margin:.25em .3em .1em .1em}
+.dyk::before{content:"";position:absolute;right:.7em;top:-.45em;width:.8em;height:.8em;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#d86a4d,#963d1b 70%);box-shadow:1px 2px 2px rgba(40,25,5,.4)}
+.dyk h2{margin-bottom:.1em}
+.dyk h2 svg{color:var(--moss)}
+
+/* ---------- autism line ---------- */
+.aut{grid-area:aut;position:relative;padding-left:.85em;font-weight:700}
+.aut::before{content:"";position:absolute;left:0;top:.1em;bottom:.1em;width:5px;border-radius:3px;background:var(--moss)}
+
+.credit{grid-area:credit;font-size:max(11px,.72em);line-height:1.25;color:#4a4034}
+
+/* short / long wording variants (tiny phones read the short one) */
+.s{display:none}
+@media (max-width:359px) and (orientation:portrait){
+  .s{display:inline}.l{display:none}
+  .page{padding:8px 10px;gap:4px 8px}
+  .mast{gap:.1em .5em}
+  .brand{font-size:1.3em}.kick,.mast time{font-size:1.1em}
+  .title{font-size:1.2em}
+  .notes h2{display:none}
+  .notes li{grid-template-columns:2.7em minmax(0,1fr);gap:.4em}
+}
+
+/* ---------- WIDE LANDSCAPE: an open two-page spread ---------- */
+@media (min-aspect-ratio:11/10) and (min-height:501px){
+  :root{--fs:clamp(15px, min(1.78vw, 2.7vh), 32px)}
+  .page{
+    padding:calc(var(--pad)*1.5) calc(var(--pad)*2);
+    gap:calc(var(--pad)*.45) calc(var(--pad)*.7);
+    grid-template-columns:minmax(0,34fr) minmax(0,23fr) minmax(0,3fr) minmax(0,40fr);
+    grid-template-rows:auto auto minmax(0,1fr) auto auto auto;
+    grid-template-areas:
+      "photo bird fold mast"
+      "photo bird fold who"
+      "photo bird fold notes"
+      "photo bird fold dyk"
+      "photo bird fold aut"
+      "photo bird fold credit";
+  }
+  .fold{display:block;grid-area:fold;grid-row:1/-1;margin:calc(var(--pad)*-1.5) 0;
+    background:linear-gradient(90deg,rgba(90,60,20,0) 0,rgba(90,60,20,.10) 38%,rgba(90,60,20,.22) 50%,rgba(255,255,255,.35) 54%,rgba(90,60,20,.07) 70%,rgba(90,60,20,0) 100%)}
+  .print{height:auto;width:96%;max-height:96%;max-width:none;margin-left:2%}
+  .bird{height:auto;width:92%;justify-self:end;max-height:100%}
+  .feather-lay{display:block;position:absolute;left:-7%;bottom:-8%;height:34%;width:auto;transform:rotate(62deg);z-index:4;pointer-events:none;filter:drop-shadow(1px 2px 2px rgba(40,25,5,.3))}
+  h1{font-size:2.9em}
+  .who{margin-bottom:0}
+  .mast{flex-wrap:nowrap;gap:.1em .55em}
+  .brand{font-size:1.4em}.kick,.mast time{font-size:1.05em}
+  .notes{align-self:center}
+  .credit{align-self:end}
+}
+
+/* ---------- SHORT LANDSCAPE (phones on their side) ---------- */
+@media (orientation:landscape) and (max-height:500px){
+  :root{--fs:15px}
+  .cover{padding:4px}
+  .page{padding:6px 12px 5px;gap:4px 14px;
+    grid-template-columns:minmax(0,.9fr) minmax(0,1.45fr) minmax(0,1.3fr);
+    grid-template-rows:auto minmax(0,1fr);
+    grid-template-areas:"mast mast mast" "c1 c2 c3"}
+  .c1,.c2,.c3{display:flex;flex-direction:column;min-width:0;min-height:0}
+  .c1{grid-area:c1;align-items:center;justify-content:center;padding:4px 4px 0 0}
+  .c2{grid-area:c2}
+  .c3{grid-area:c3;gap:6px}
+  .print{height:auto;width:100%;max-width:none;flex:none;align-self:stretch}
+  .bird{flex:1 1 0;min-height:0;height:auto;width:auto;max-width:100%;align-self:center}
+  .bird .lab,.bird .leaders,.bird .fig{display:none}
+  h1{font-size:2.05em}
+  .who{margin-bottom:.15em}
+  .title{font-size:1.25em}
+  .notes li{grid-template-columns:2.7em minmax(0,1fr);gap:.45em}
+  .credit{margin-top:auto}
+  .brand{font-size:1.3em}
+}
+
+@media (min-aspect-ratio:11/10) and (min-height:501px) and (max-width:1150px){.brand svg{display:none}.kick,.mast time{font-size:1em}}
+</style>
+</head>
+<body>
+<svg class="defs" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/>
+    </filter>
+    <symbol id="feather" viewBox="0 0 80 312">
+      <path d="M44.0,6.0L44.0,6.0L34.6,18.2L29.7,27.9L25.9,37.1L22.7,45.9L20.0,54.4L17.6,62.7L15.6,70.9L13.8,79.0L12.2,86.9L10.9,94.6L9.7,102.3L8.8,109.8L8.0,117.3L7.5,124.7L7.1,131.9L6.8,139.1L6.7,146.2L6.7,153.2L6.9,160.2L7.2,167.0L7.6,173.8L8.2,180.6L8.8,187.3L9.6,193.9L10.5,200.4L11.4,207.0L12.5,213.4L13.7,219.8L14.9,226.2L16.2,232.5L17.7,238.7L19.2,244.9L20.7,251.1L22.4,257.2L24.2,263.3L26.1,269.3L28.1,275.2L30.2,281.1L32.7,286.8L36.0,292.0L36.0,292.0Z" fill="var(--fv,#d9a066)" opacity=".92"/>
+      <path d="M44.0,6.0L44.0,6.0L51.1,17.2L54.6,26.4L57.3,35.1L59.4,43.5L61.3,51.8L62.8,59.9L64.1,67.9L65.2,75.7L66.0,83.5L66.7,91.1L67.3,98.7L67.6,106.1L67.9,113.5L68.0,120.8L68.0,128.1L67.8,135.2L67.5,142.4L67.1,149.4L66.6,156.4L66.0,163.3L65.4,170.2L64.6,177.0L63.7,183.8L62.7,190.5L61.7,197.2L60.5,203.9L59.3,210.5L58.1,217.0L56.7,223.5L55.3,230.0L53.8,236.4L52.2,242.9L50.6,249.2L48.9,255.6L47.2,261.8L45.3,268.1L43.4,274.3L41.3,280.4L39.0,286.4L36.0,292.0L36.0,292.0Z" fill="var(--fv,#d9a066)" opacity=".78"/>
+      <path d="M43.4,27.4L25.9,37.1M43.4,27.4L57.3,35.1M43.2,34.6L22.7,45.9M43.2,34.6L59.4,43.5M43.0,41.8L20.0,54.4M43.0,41.8L61.3,51.8M42.8,48.9L17.6,62.7M42.8,48.9L62.8,59.9M42.6,56.0L15.6,70.9M42.6,56.0L64.1,67.9M42.4,63.2L13.8,79.0M42.4,63.2L65.2,75.7M42.2,70.4L12.2,86.9M42.2,70.4L66.0,83.5M42.0,77.5L10.9,94.6M42.0,77.5L66.7,91.1M41.8,84.7L9.7,102.3M41.8,84.7L67.3,98.7M41.6,91.8L8.8,109.8M41.6,91.8L67.6,106.1M41.4,99.0L8.0,117.3M41.4,99.0L67.9,113.5M41.2,106.1L7.5,124.7M41.2,106.1L68.0,120.8M41.0,113.2L7.1,131.9M41.0,113.2L68.0,128.1M40.8,120.4L6.8,139.1M40.8,120.4L67.8,135.2M40.6,127.5L6.7,146.2M40.6,127.5L67.5,142.4M40.4,134.7L6.7,153.2M40.4,134.7L67.1,149.4M40.2,141.8L6.9,160.2M40.2,141.8L66.6,156.4M40.0,149.0L7.2,167.0M40.0,149.0L66.0,163.3M39.8,156.2L7.6,173.8M39.8,156.2L65.4,170.2M39.6,163.3L8.2,180.6M39.6,163.3L64.6,177.0M39.4,170.4L8.8,187.3M39.4,170.4L63.7,183.8M39.2,177.6L9.6,193.9M39.2,177.6L62.7,190.5M39.0,184.8L10.5,200.4M39.0,184.8L61.7,197.2M38.8,191.9L11.4,207.0M38.8,191.9L60.5,203.9M38.6,199.1L12.5,213.4M38.6,199.1L59.3,210.5M38.4,206.2L13.7,219.8M38.4,206.2L58.1,217.0M38.2,213.3L14.9,226.2M38.2,213.3L56.7,223.5M38.0,220.5L16.2,232.5M38.0,220.5L55.3,230.0M37.8,227.7L17.7,238.7M37.8,227.7L53.8,236.4M37.6,234.8L19.2,244.9M37.6,234.8L52.2,242.9M37.4,241.9L20.7,251.1M37.4,241.9L50.6,249.2M37.2,249.1L22.4,257.2M37.2,249.1L48.9,255.6M37.0,256.2L24.2,263.3M37.0,256.2L47.2,261.8M36.8,263.4L26.1,269.3M36.8,263.4L45.3,268.1M36.6,270.6L28.1,275.2M36.6,270.6L43.4,274.3M36.4,277.7L30.2,281.1M36.4,277.7L41.3,280.4" fill="none" stroke="var(--ink)" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+      <path d="M44.0,6.0Q37.0,149.0 36.0,306.0" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M44.0,6.0L44.0,6.0L34.6,18.2L29.7,27.9L25.9,37.1L22.7,45.9L20.0,54.4L17.6,62.7L15.6,70.9L13.8,79.0L12.2,86.9L10.9,94.6L9.7,102.3L8.8,109.8L8.0,117.3L7.5,124.7L7.1,131.9L6.8,139.1L6.7,146.2L6.7,153.2L6.9,160.2L7.2,167.0L7.6,173.8L8.2,180.6L8.8,187.3L9.6,193.9L10.5,200.4L11.4,207.0L12.5,213.4L13.7,219.8L14.9,226.2L16.2,232.5L17.7,238.7L19.2,244.9L20.7,251.1L22.4,257.2L24.2,263.3L26.1,269.3L28.1,275.2L30.2,281.1L32.7,286.8L36.0,292.0L36.0,292.0Z" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M44.0,6.0L44.0,6.0L51.1,17.2L54.6,26.4L57.3,35.1L59.4,43.5L61.3,51.8L62.8,59.9L64.1,67.9L65.2,75.7L66.0,83.5L66.7,91.1L67.3,98.7L67.6,106.1L67.9,113.5L68.0,120.8L68.0,128.1L67.8,135.2L67.5,142.4L67.1,149.4L66.6,156.4L66.0,163.3L65.4,170.2L64.6,177.0L63.7,183.8L62.7,190.5L61.7,197.2L60.5,203.9L59.3,210.5L58.1,217.0L56.7,223.5L55.3,230.0L53.8,236.4L52.2,242.9L50.6,249.2L48.9,255.6L47.2,261.8L45.3,268.1L43.4,274.3L41.3,280.4L39.0,286.4L36.0,292.0L36.0,292.0Z" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="track" viewBox="0 0 24 28">
+      <g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 26 V10"/><path d="M12 15 L4.5 5.5"/><path d="M12 15 L19.5 5.5"/><path d="M12 10 V2"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="cover">
+<main class="page">
+  <div class="fold" aria-hidden="true"></div>
+
+  <header class="mast">
+    <span class="brand"><svg viewBox="0 0 80 312" aria-hidden="true" style="--fv:#d9a066"><use href="#feather"/></svg>Ausum</span>
+    <span class="kick">Person of the day</span>
+    <time id="today" datetime="">Today</time>
+  </header>
+
+  <div class="c1">
+  <figure class="print">
+    <span class="tape a" aria-hidden="true"></span><span class="tape b" aria-hidden="true"></span>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Chris_Packham,_People%27s_Walk_for_Wildlife_2018_(44125363624)_(cropped).jpg?width=900"
+         width="900" height="1042" alt="Chris Packham, a man with short grey-brown hair, looking up and to one side, wearing a red jacket outdoors.">
+    <svg class="feather-lay" viewBox="0 0 80 312" aria-hidden="true" style="--fv:#e2b27a"><use href="#feather"/></svg>
+    <figcaption>Fig. 1</figcaption>
+  </figure>
+  </div>
+  <div class="c2">
+  <section class="who">
+    <h1>Chris Packham</h1>
+    <p class="title">Naturalist, photographer, TV presenter</p>
+  </section>
+  <section class="notes">
+    <h2><svg viewBox="0 0 24 28" aria-hidden="true"><use href="#track"/></svg>Field notes</h2>
+    <ol>
+      <li><span class="d">1986</span><p>Starts presenting <b>The Really Wild Show</b>, a BBC nature programme for children.</p></li>
+      <li class="opt"><span class="d">2009</span><p>Joins <b>Springwatch</b>, a BBC show that watches wild birds and animals.</p></li>
+      <li><span class="d">2019</span><p>Is given a <b>CBE</b>, a special honour, for helping to protect nature.</p></li>
+    </ol>
+  </section>
+  </div>
+  <div class="c3">
+  <aside class="dyk">
+    <h2><svg viewBox="0 0 24 28" aria-hidden="true"><use href="#track"/></svg>Did you know?</h2>
+    <p>In 2018, Chris helped scientists rebuild a T. rex<span class="l">, starting from its bones, to show how it may really have looked</span><span class="s"> from its bones</span>.</p>
+  </aside>
+  <p class="aut">Chris was diagnosed with Asperger syndrome, a kind of autism, in 2005. He talks about it openly.</p>
+  <figure class="bird">
+    <svg viewBox="0 0 340 470" role="img" aria-label="A pen and watercolour drawing of a kestrel perched on a branch, with a grey head, a brown back with dark spots, and a long tail.">
+  <defs>
+    <path id="b-tail" d="M150,296 C176,330 212,380 236,438 L200,444 C170,408 134,356 116,304 Z"/>
+    <path id="b-sil" d="M100,94 C96,62 120,38 152,40 C182,42 200,66 198,94 C216,120 242,160 242,222 C242,264 228,296 206,310 C182,324 140,320 118,292 C92,258 80,198 94,152 C98,138 102,128 108,122 C100,114 100,102 100,94 Z"/>
+    <path id="b-wing" d="M182,100 C232,114 254,172 248,238 C244,278 226,304 204,330 C178,302 160,246 160,190 C158,150 166,122 182,100 Z"/>
+    <path id="b-beak" d="M106,78 C92,78 80,92 86,108 C94,102 102,98 114,96 Z"/>
+    <path id="b-branch" d="M-4,358 C70,348 150,346 220,342 C276,338 316,330 338,322 L338,336 C312,346 270,356 216,360 C150,366 70,370 -4,380 Z"/>
+    <clipPath id="c-tail"><use href="#b-tail"/></clipPath>
+    <clipPath id="c-sil"><use href="#b-sil"/></clipPath>
+    <linearGradient id="g-cap" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b6c7cf"/><stop offset="1" stop-color="#8aa0ac"/></linearGradient>
+    <linearGradient id="g-wing" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d07b3e"/><stop offset="1" stop-color="#a3532a"/></linearGradient>
+    <linearGradient id="g-belly" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f6e4ba"/><stop offset="1" stop-color="#e5c58c"/></linearGradient>
+    <linearGradient id="g-branch" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b38f64"/><stop offset="1" stop-color="#876544"/></linearGradient>
+  </defs>
+
+  <!-- washes: flat colour laid slightly off the pen line, like real watercolour -->
+  <g transform="translate(3,3)">
+    <use href="#b-tail" fill="#93a6b0"/>
+    <g clip-path="url(#c-tail)">
+      <path d="M130,382 L280,414" stroke="#2c2f35" stroke-width="26" fill="none"/>
+      <path d="M130,438 L290,456" stroke="#fbf6e6" stroke-width="14" fill="none"/>
+    </g>
+  </g>
+  <g transform="translate(2,2)">
+    <use href="#b-branch" fill="url(#g-branch)"/>
+    <path d="M292,344 C302,322 308,302 326,280" fill="none" stroke="#876544" stroke-width="6" stroke-linecap="round"/>
+    <path d="M326,280 C338,266 338,250 332,238 C318,246 312,264 326,280Z" fill="#9fc27a"/>
+    <path d="M303,314 C316,306 322,294 320,284 C306,288 299,302 303,314Z" fill="#b7d28f"/>
+    <path d="M64,366 C56,348 42,336 24,328" fill="none" stroke="#876544" stroke-width="5" stroke-linecap="round"/>
+    <path d="M24,328 C12,326 4,316 6,302 C18,304 26,314 24,328Z" fill="#9fc27a"/>
+  </g>
+  <g transform="translate(3,3)">
+    <use href="#b-sil" fill="url(#g-belly)"/>
+    <g clip-path="url(#c-sil)"><path d="M60,20 L240,20 L240,120 C206,130 172,132 140,128 C120,124 104,116 92,110 Z" fill="url(#g-cap)"/></g>
+    <use href="#b-wing" fill="url(#g-wing)"/>
+    <ellipse cx="110" cy="82" rx="7" ry="6" fill="#e6b422"/>
+    <use href="#b-beak" fill="#47423c"/>
+  </g>
+
+  <!-- pen line, roughened a little -->
+  <g filter="url(#wobble)" fill="none" stroke="#2a241d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <use href="#b-tail"/>
+    <path d="M168,330 C186,356 204,384 218,416 M146,320 C160,344 176,372 192,402" stroke-width="1" opacity=".4"/>
+    <use href="#b-branch"/>
+    <path d="M292,344 C302,322 308,302 326,280 M64,366 C56,348 42,336 24,328" stroke-width="2"/>
+    <path d="M326,280 C338,266 338,250 332,238 C318,246 312,264 326,280Z M303,314 C316,306 322,294 320,284 C306,288 299,302 303,314Z M24,328 C12,326 4,316 6,302 C18,304 26,314 24,328Z" stroke-width="1.8"/>
+    <path d="M334,240 C328,256 324,268 326,280 M318,288 C312,298 307,306 303,314" stroke-width="1" opacity=".6"/>
+    <path d="M30,364 l9,-1 M96,358 l10,-1 M150,356 l8,-1 M196,352 l9,-1 M250,348 l9,-2 M120,366 l9,0 M220,358 l8,-1" stroke-width="1.3" opacity=".55"/>
+
+    <!-- legs and toes (dark under-stroke) -->
+    <path d="M140,308 L138,350 M168,310 L170,352" stroke-width="10"/>
+    <path d="M138,350 C128,351 120,354 112,357 M138,350 C140,356 139,360 136,363 M138,350 C147,353 153,357 157,360 M170,352 C180,354 190,358 196,362 M170,352 C172,358 171,362 168,366 M170,352 C162,354 156,357 152,360" stroke-width="8"/>
+
+    <use href="#b-sil"/>
+    <use href="#b-wing"/>
+    <path d="M116,152 l3,10 M128,144 l3,12 M140,140 l2,12 M108,178 l3,12 M121,172 l3,12 M134,168 l3,12 M147,162 l2,12 M110,206 l3,12 M124,200 l3,12 M137,196 l3,12 M118,232 l3,11 M132,228 l3,12 M146,224 l3,12 M132,256 l3,10 M146,252 l2,11 M140,278 l3,9" stroke="#7a4524" stroke-width="2.2"/>
+    <g fill="#2c2018" stroke="none">
+      <path transform="translate(198,132)" d="M0,0 l7,2.5 l-5,6z"/><path transform="translate(222,152)" d="M0,0 l7,2.5 l-5,6z"/>
+      <path transform="translate(186,154)" d="M0,0 l7,2.5 l-5,6z"/><path transform="translate(208,174)" d="M0,0 l7,2.5 l-5,6z"/>
+      <path transform="translate(232,186)" d="M0,0 l7,2.5 l-5,6z"/><path transform="translate(186,186)" d="M0,0 l7,2.5 l-5,6z"/>
+      <path transform="translate(216,204)" d="M0,0 l7,2.5 l-5,6z"/><path transform="translate(232,222)" d="M0,0 l7,2.5 l-5,6z"/>
+      <path transform="translate(192,216)" d="M0,0 l7,2.5 l-5,6z"/><path transform="translate(210,236)" d="M0,0 l7,2.5 l-5,6z"/>
+      <path transform="translate(226,252)" d="M0,0 l7,2.5 l-5,6z"/><path transform="translate(190,248)" d="M0,0 l7,2.5 l-5,6z"/>
+      <path transform="translate(204,268)" d="M0,0 l7,2.5 l-5,6z"/><path transform="translate(218,282)" d="M0,0 l7,2.5 l-5,6z"/>
+      <path transform="translate(186,280)" d="M0,0 l7,2.5 l-5,6z"/><path transform="translate(198,304)" d="M0,0 l7,2.5 l-5,6z"/>
+    </g>
+    <path d="M198,170 C206,204 208,246 200,306 M216,162 C228,204 228,240 218,288" stroke-width="1" opacity=".45"/>
+    <path d="M128,98 C132,110 138,120 136,130" stroke="#2a2a2e" stroke-width="7"/>
+    <use href="#b-beak"/>
+    <path d="M96,98 C98,100 104,100 110,98" stroke-width="1.4"/>
+    <path d="M112,70 C124,62 140,60 154,64 M166,50 C178,52 190,62 195,76" stroke-width="1.1" opacity=".5"/>
+  </g>
+  <!-- legs in yellow over the pen line, then claws -->
+  <g transform="translate(1,1)">
+    <path d="M140,308 L138,350 M168,310 L170,352" fill="none" stroke="#e3b02a" stroke-width="5.5" stroke-linecap="round"/>
+    <path d="M138,350 C128,351 120,354 112,357 M138,350 C140,356 139,360 136,363 M138,350 C147,353 153,357 157,360 M170,352 C180,354 190,358 196,362 M170,352 C172,358 171,362 168,366 M170,352 C162,354 156,357 152,360" fill="none" stroke="#e3b02a" stroke-width="3.8" stroke-linecap="round"/>
+    <g fill="#2a241d"><circle cx="112" cy="357" r="2.6"/><circle cx="136" cy="363" r="2.6"/><circle cx="157" cy="360" r="2.6"/><circle cx="196" cy="362" r="2.6"/><circle cx="168" cy="366" r="2.6"/><circle cx="152" cy="360" r="2.6"/></g>
+  </g>
+  <!-- eye -->
+  <circle cx="126" cy="84" r="9" fill="#e6b422" stroke="#2a241d" stroke-width="1.6"/>
+  <circle cx="126" cy="84" r="5.2" fill="#1d1814"/>
+  <circle cx="124" cy="82" r="1.6" fill="#fff"/>
+
+  <!-- specimen leader lines -->
+  <g class="leaders" fill="none" stroke="#274769" stroke-width="1.6" stroke-linecap="round">
+    <path d="M58,60 C80,62 102,72 116,82"/>
+    <circle cx="118" cy="83" r="2.4" fill="#274769" stroke="none"/>
+    <path d="M270,176 C258,184 250,190 240,196"/>
+    <circle cx="238" cy="197" r="2.4" fill="#274769" stroke="none"/>
+  </g>
+</svg>
+
+    <span class="lab eyes">keen<br>eyes</span>
+    <span class="lab hover">hovers<br>to hunt</span>
+    <figcaption class="fig">Fig. 2 <i>Falco tinnunculus</i></figcaption>
+  </figure>
+  <p class="credit"><span>Photo: Garry Knight, CC BY 2.0, Wikimedia Commons</span></p>
+  </div>
+</main>
+</div>
+<script>
+(function(){
+  var d=new Date(),
+      days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      months=["January","February","March","April","May","June","July","August","September","October","November","December"],
+      el=document.getElementById("today");
+  el.textContent=days[d.getDay()]+" "+d.getDate()+" "+months[d.getMonth()];
+  el.setAttribute("datetime",d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2));
+})();
+</script>
+</body>
+</html>
