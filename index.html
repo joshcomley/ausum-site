@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ausum — sample days</title>
+<meta name="description" content="Ausum: one inspiring autistic person a day. Six sample pages, each designed around the person.">
+<style>
+  :root { --ink:#1b1b1f; --paper:#f6f3ec; --muted:#55524d; --card:#fff; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--paper); color: var(--ink); font: 16px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { height: 100dvh; display: grid; grid-template-rows: auto 1fr auto; gap: clamp(8px, 1.8vh, 18px);
+         padding: clamp(12px, 2.6vmin, 28px); }
+  header { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2em .6em; }
+  h1 { margin: 0; font-size: clamp(22px, 4.2vmin, 38px); letter-spacing: .04em; }
+  header p { margin: 0; color: var(--muted); font-size: clamp(14px, 2.1vmin, 18px); }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(8px, 1.6vmin, 18px); min-height: 0;
+       grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(0, 1fr); }
+  @media (orientation: portrait) { ul { grid-template-columns: repeat(2, 1fr); } }
+  li { min-height: 0; }
+  a { position: relative; display: grid; grid-template-rows: minmax(0, 1fr) auto; height: 100%; border-radius: 12px;
+      overflow: hidden; text-decoration: none; color: var(--ink); background: var(--card);
+      box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 4px 14px rgba(0,0,0,.06); }
+  a:focus-visible { outline: 4px solid #e8b400; outline-offset: 3px; }
+  @media (hover: hover) { a:hover { box-shadow: 0 2px 4px rgba(0,0,0,.12), 0 8px 22px rgba(0,0,0,.12); } }
+  picture { display: block; min-height: 0; background: #e9e5dc; padding: clamp(4px, 1vmin, 10px); }
+  img { display: block; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 1px 3px rgba(0,0,0,.18)); }
+  .cap { display: grid; padding: clamp(6px, 1.3vmin, 12px) clamp(8px, 1.6vmin, 14px); border-top: 4px solid var(--c); }
+  strong { font-size: clamp(14px, 2.3vmin, 20px); line-height: 1.15; }
+  small { font-size: clamp(12px, 1.7vmin, 15px); color: var(--muted); line-height: 1.2; }
+  @media (max-height: 500px) { small { display: none; } }
+  footer { margin: 0; font-size: clamp(12px, 1.6vmin, 14px); color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Ausum</h1>
+    <p>One inspiring autistic person a day. Six sample pages.</p>
+  </header>
+  <ul>
+    <li><a href="temple-grandin.html" style="--c:#123e8c">
+      <picture><source media="(orientation: portrait)" srcset="previews/temple-grandin-tall.jpg"><img src="previews/temple-grandin-wide.jpg" alt="Preview of the Temple Grandin page"></picture>
+      <span class="cap"><strong>Temple Grandin</strong><small>Animal scientist · blueprint</small></span></a></li>
+    <li><a href="stephen-wiltshire.html" style="--c:#2a2622">
+      <picture><source media="(orientation: portrait)" srcset="previews/stephen-wiltshire-tall.jpg"><img src="previews/stephen-wiltshire-wide.jpg" alt="Preview of the Stephen Wiltshire page"></picture>
+      <span class="cap"><strong>Stephen Wiltshire</strong><small>City artist · pen and ink</small></span></a></li>
+    <li><a href="jessica-jane-applegate.html" style="--c:#f4c20d">
+      <picture><source media="(orientation: portrait)" srcset="previews/jessica-jane-applegate-tall.jpg"><img src="previews/jessica-jane-applegate-wide.jpg" alt="Preview of the Jessica-Jane Applegate page"></picture>
+      <span class="cap"><strong>Jessica-Jane Applegate</strong><small>Paralympic swimmer · sports poster</small></span></a></li>
+    <li hidden><a href="chris-packham.html" style="--c:#6b8e3d">
+      <picture><source media="(orientation: portrait)" srcset="previews/chris-packham-tall.jpg"><img src="previews/chris-packham-wide.jpg" alt="Preview of the Chris Packham page"></picture>
+      <span class="cap"><strong>Chris Packham</strong><small>Naturalist · field notebook</small></span></a></li>
+    <li hidden><a href="isaac-newton.html" style="--c:#7a4fd1">
+      <picture><source media="(orientation: portrait)" srcset="previews/isaac-newton-tall.jpg"><img src="previews/isaac-newton-wide.jpg" alt="Preview of the Isaac Newton page"></picture>
+      <span class="cap"><strong>Isaac Newton</strong><small>Scientist · light and gravity</small></span></a></li>
+    <li hidden><a href="susan-boyle.html" style="--c:#8e2440">
+      <picture><source media="(orientation: portrait)" srcset="previews/susan-boyle-tall.jpg"><img src="previews/susan-boyle-wide.jpg" alt="Preview of the Susan Boyle page"></picture>
+      <span class="cap"><strong>Susan Boyle</strong><small>Singer · concert programme</small></span></a></li>
+  </ul>
+  <footer>On the real site a child sees one person each day. This page is only for comparing the designs.</footer>
+</main>
+<script>
+  // When this page is opened through a file viewer that passes the file as ?path=..., plain
+  // relative links would point at the viewer itself. Rewrite them to go through the viewer too.
+  (function () {
+    var q = new URLSearchParams(location.search), p = q.get("path");
+    if (!p) return;
+    var dir = p.replace(/[\\/][^\\/]*$/, "");
+    function via(rel) { var n = new URLSearchParams(q); n.set("path", dir + "/" + rel); return location.pathname + "?" + n; }
+    document.querySelectorAll("a[href]").forEach(function (a) { a.href = via(a.getAttribute("href")); });
+    document.querySelectorAll("img[src]").forEach(function (i) { i.src = via(i.getAttribute("src")); });
+    document.querySelectorAll("source[srcset]").forEach(function (s) { s.srcset = via(s.getAttribute("srcset")); });
+  })();
+</script>
+</body>
+</html>

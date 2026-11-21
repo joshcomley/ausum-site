@@ -1,0 +1,304 @@
+<!doctype html>
+<!--
+AUSUM - Person of the day: Jessica-Jane Applegate (evidence grade A)
+
+FACT SOURCES (all checked 2026-11-21)
+ - Wikipedia, "Jessica-Jane Applegate" (?action=raw, infobox + prose + citations): born 22 Aug 1996, Great Yarmouth;
+   gold 200 m freestyle S14 London 2012 (won 2 Sep 2012, Paralympic record 2:12.63); gold mixed 4x100 m freestyle relay S14
+   Tokyo 2020 Games (28 Aug 2021); world gold medals 2013 (200 m free), 2015 (100 m back), 2023 (200 m free); MBE in the
+   2013 New Year Honours (London Gazette 60367); "diagnosed with autism spectrum disorder"; retired Dec 2025.
+ - BBC Sport, "Jessica-Jane Applegate: Double Paralympic gold medallist retires", 5 Dec 2025: "has Asperger's Syndrome",
+   "only 16 when she won the 200m freestyle S14 final in London", "three golds" at the World Championships,
+   five medals (none gold) at the European Championships, golds at London 2012 and Tokyo, "praised for tackling disability stigma".
+   CORRECTION to the commission note: she did NOT win a European title (European Championships: silvers and bronzes only),
+   so the page does not claim one.
+ - Norwich Evening News, 4 Sep 2012, "Norfolk postbox painted gold to celebrate Jessica-Jane Applegate's Paralympic Games win"
+   (Belton with Browston, via Wikipedia "2012 Summer Olympics and Paralympics gold post boxes") - the "Did you know?" fact.
+ - Photo: Wikimedia Commons "File:Jessica-Jane Applegate.jpg", Richard Gillin from St Albans, UK, CC BY-SA 2.0 (taken 10 Sep 2012).
+
+DESIGN TECHNIQUES (why they fit a swimmer)
+ - Swiss / International Typographic Style sports poster after Otl Aicher's Munich 1972 system: strict 12 x 8 grid, flat colour,
+   one condensed grotesque (Barlow Condensed), ragged-right body in Barlow, geometric numerals drawn by hand as SVG strokes.
+ - The grid IS the pool in plan view: the 8 grid rows are 8 swimming lanes (black lane lines down the middle of each lane,
+   white-and-gold lane-rope floats on every boundary). Panels snap to lane boundaries. In portrait the pool turns 90 degrees:
+   six vertical lanes, so the page always reads as a pool.
+ - Type as image: a giant geometric "200" where one zero is the gold medal disc (concentric rings and waves drawn in SVG).
+ - Horizontal motion: lanes, long bands, and a slanted gold-edged photo cut like a starting-block diagonal.
+ - Photo as poster cut-out: tall crop with a slanted edge, gold keyline, face and her own gold medal kept clear.
+ - Palette: chlorine aqua, deep navy, gold. Text only ever sits on solid panels (no pattern behind words). One slow fade-in, none if reduced motion.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ausum - Jessica-Jane Applegate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --aqua:#38c6d9; --aqua2:#4cd0e1; --navy:#0a1f44; --gold:#ffc21a; --golddk:#d99a00; --white:#fff;
+    --n:8;                               /* lanes */
+    --L:calc(100dvh / var(--n));         /* one lane */
+    --dir:180deg; --rdir:90deg;          /* landscape: lanes run left-right */
+    --fs:clamp(15px, min(1.2vw, 2.1dvh), 26px);
+    --cond:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+    --sans:"Barlow",Arial,Helvetica,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--aqua)}
+  body{overflow:hidden;font-family:var(--sans);font-weight:500;font-size:var(--fs);line-height:1.28;color:var(--navy);
+       height:100dvh;width:100vw;position:relative}
+
+  /* ---------- the pool (plan view) ---------- */
+  .pool{position:fixed;inset:0;z-index:0;
+    background:
+      repeating-linear-gradient(var(--dir),
+        transparent 0 calc(var(--L)/2 - 2.5px),
+        rgba(10,31,68,.72) calc(var(--L)/2 - 2.5px) calc(var(--L)/2 + 2.5px),
+        transparent calc(var(--L)/2 + 2.5px) var(--L)),
+      repeating-linear-gradient(var(--dir), var(--aqua) 0 var(--L), var(--aqua2) var(--L) calc(2*var(--L)));
+  }
+  .pool::before{content:"";position:absolute;inset:0;
+    background:repeating-linear-gradient(var(--rdir), var(--white) 0 1.1rem, var(--gold) 1.1rem 2.2rem);
+    -webkit-mask:repeating-linear-gradient(var(--dir), #000 0 7px, transparent 7px var(--L));
+            mask:repeating-linear-gradient(var(--dir), #000 0 7px, transparent 7px var(--L));
+  }
+
+  /* ---------- poster grid (landscape / desktop): 36 columns x 8 lanes ---------- */
+  .poster{position:relative;z-index:1;height:100dvh;width:100vw;display:grid;
+    grid-template-columns:repeat(36,1fr);grid-template-rows:repeat(8,1fr);
+    grid-template-areas:
+      "mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast photo photo photo photo photo photo photo photo photo"
+      "hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero photo photo photo photo photo photo photo photo photo"
+      "hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero photo photo photo photo photo photo photo photo photo"
+      "hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero photo photo photo photo photo photo photo photo photo"
+      "name name name name name name name name name name name name name name name name name name name name name name name name name name name photo photo photo photo photo photo photo photo photo"
+      "a1 a1 a1 a1 a1 a1 a1 a1 a1 a2 a2 a2 a2 a2 a2 a2 a2 a2 a3 a3 a3 a3 a3 a3 a3 a3 a3 photo photo photo photo photo photo photo photo photo"
+      "a1 a1 a1 a1 a1 a1 a1 a1 a1 a2 a2 a2 a2 a2 a2 a2 a2 a2 a3 a3 a3 a3 a3 a3 a3 a3 a3 photo photo photo photo photo photo photo photo photo"
+      "dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk aut aut aut aut aut aut aut aut aut aut aut aut photo photo photo photo photo photo photo photo photo";
+    animation:rise 1.2s ease-out both}
+  /* squarer landscape screens (4:3 tablets): give the photo a wider strip so the face is never cropped */
+  @media (max-aspect-ratio:3/2){
+    .poster{grid-template-areas:
+      "mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast mast photo photo photo photo photo photo photo photo photo photo photo photo"
+      "hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero photo photo photo photo photo photo photo photo photo photo photo photo"
+      "hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero photo photo photo photo photo photo photo photo photo photo photo photo"
+      "hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero hero photo photo photo photo photo photo photo photo photo photo photo photo"
+      "name name name name name name name name name name name name name name name name name name name name name name name name photo photo photo photo photo photo photo photo photo photo photo photo"
+      "a1 a1 a1 a1 a1 a1 a1 a1 a2 a2 a2 a2 a2 a2 a2 a2 a3 a3 a3 a3 a3 a3 a3 a3 photo photo photo photo photo photo photo photo photo photo photo photo"
+      "a1 a1 a1 a1 a1 a1 a1 a1 a2 a2 a2 a2 a2 a2 a2 a2 a3 a3 a3 a3 a3 a3 a3 a3 photo photo photo photo photo photo photo photo photo photo photo photo"
+      "dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk dyk aut aut aut aut aut aut aut aut aut aut aut photo photo photo photo photo photo photo photo photo photo photo photo"}
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.poster{animation:none}}
+
+  /* masthead */
+  .mast{grid-area:mast;background:var(--navy);color:var(--white);display:flex;align-items:center;
+        justify-content:space-between;gap:1em;padding:0 min(2vw,2.6dvh)}
+  .brand{font-family:var(--cond);font-weight:900;font-size:calc(var(--L)*.62);line-height:1;color:var(--gold);
+         letter-spacing:.04em;text-transform:uppercase}
+  .kicker{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.18em;
+          font-size:calc(var(--fs)*1.05)}
+  .mast time{font-family:var(--cond);font-weight:800;font-size:calc(var(--fs)*1.45);text-transform:uppercase;
+             letter-spacing:.05em;white-space:nowrap}
+
+  /* hero numeral */
+  .hero{grid-area:hero;min-height:0;display:grid;grid-template-columns:auto minmax(0,1fr);
+        grid-template-rows:minmax(0,1fr) auto;row-gap:calc(var(--L)*.16);column-gap:min(2vw,3dvh);padding:min(1.6vw,2.4dvh) min(2vw,2.6dvh) 0}
+  .numeral{grid-column:1;grid-row:1;height:100%;min-height:0;width:auto;aspect-ratio:920/400;display:block;
+           align-self:center}
+  .event{grid-column:2;grid-row:1;container-type:inline-size;align-self:stretch;display:flex;align-items:center;min-width:0}
+  .event p{font-family:var(--cond);font-weight:900;text-transform:uppercase;font-size:15.5cqw;line-height:1;
+           letter-spacing:.01em;color:var(--navy);padding-bottom:.04em;display:flex;flex-direction:column;align-items:flex-start;gap:.06em}
+  .event p span{display:inline-block;padding:.0em .14em .02em;line-height:.92}
+  .event p span:first-child{color:var(--white);background:var(--navy)}
+  .event p span:last-child{color:var(--navy);background:var(--white)}
+  .role{grid-column:1 / -1;grid-row:2;justify-self:start;align-self:end;background:var(--gold);color:var(--navy);
+        font-family:var(--cond);font-weight:800;text-transform:uppercase;letter-spacing:.06em;
+        font-size:calc(var(--L)*.34);line-height:1;padding:.3em .6em .26em;margin:0 0 calc(var(--L)*.2) 0}
+
+  /* name band */
+  .name{grid-area:name;background:var(--white);display:flex;align-items:center;padding:0 min(2vw,2.6dvh);
+        border-top:5px solid var(--navy);min-width:0}
+  h1{font-family:var(--cond);font-weight:900;text-transform:uppercase;line-height:.9;letter-spacing:-.005em;
+     font-size:min(7.05vw, calc(var(--L)*.98));white-space:nowrap;color:var(--navy)}
+
+  /* achievements: three lanes */
+  .a{background:var(--navy);color:var(--white);padding:min(1.1vw,1.6dvh) min(1.3vw,1.9dvh);display:flex;flex-direction:column;
+     justify-content:center;gap:.25em;min-width:0}
+  .a + .a{border-left:4px solid var(--aqua)}
+  .a1{grid-area:a1}.a2{grid-area:a2}.a3{grid-area:a3}
+  .yr{font-family:var(--cond);font-weight:900;color:var(--gold);line-height:.85;font-size:calc(var(--L)*.6);letter-spacing:.01em}
+  .a p,.a>span:last-child{font-size:calc(var(--fs)*1.18)}
+
+  .dyk{grid-area:dyk;background:var(--gold);padding:min(1.1vw,1.6dvh) min(1.6vw,2.2dvh);display:flex;flex-direction:column;justify-content:center;gap:.15em}
+  .dyk h2{font-family:var(--cond);font-weight:900;text-transform:uppercase;letter-spacing:.06em;font-size:calc(var(--fs)*1.2);line-height:1}
+  .dyk p{font-weight:700}
+  .aut{grid-area:aut;background:var(--white);border-left:5px solid var(--navy);border-top:5px solid var(--navy);
+       padding:min(1.1vw,1.6dvh) min(1.6vw,2.2dvh);display:flex;align-items:center;font-weight:700}
+
+  /* photo: slanted poster cut, gold keyline */
+  .photo{grid-area:photo;position:relative;background:var(--gold);min-width:0;min-height:0;
+         clip-path:polygon(var(--slant) 0,100% 0,100% 100%,0 100%);--slant:17%}
+  .photo img{position:absolute;inset:0 0 0 14px;width:calc(100% - 14px);height:100%;object-fit:cover;object-position:41% 14%;
+             clip-path:polygon(calc(var(--slant) + 10px) 0,100% 0,100% 100%,14px 100%);display:block;
+             filter:saturate(1.08) contrast(1.03)}
+  .credit{position:absolute;right:0;bottom:0;background:var(--navy);color:var(--white);font-size:12px;line-height:1.3;
+          padding:.4em .8em;font-weight:600;max-width:100%}
+
+  .short{display:none}
+  @media (orientation:landscape) and (max-aspect-ratio:3/2){ h1{font-size:min(6.15vw, calc(var(--L)*.98))} }
+
+  /* ---------- PHONE LANDSCAPE ---------- */
+  @media (max-height:500px) and (orientation:landscape){
+    :root{--n:6;--fs:16px}
+    .poster{grid-template-columns:minmax(0,27vw) repeat(6,1fr);grid-template-rows:auto auto auto 1fr 1fr 1fr auto auto;
+      grid-template-areas:
+        "photo mast mast mast mast mast mast"
+        "photo hero hero hero hero hero hero"
+        "photo name name name name name name"
+        "photo a1 a1 a1 a1 a1 a1"
+        "photo a2 a2 a2 a2 a2 a2"
+        "photo a3 a3 a3 a3 a3 a3"
+        "photo dyk dyk dyk dyk dyk dyk"
+        "photo aut aut aut aut aut aut"}
+    .mast{height:32px;padding:0 12px}
+    .brand{font-size:23px}.kicker{font-size:13px}.mast time{font-size:17px}
+    .hero{grid-template-rows:auto;grid-template-columns:auto auto 1fr;padding:7px 12px;row-gap:0;column-gap:12px;align-items:center}
+    .numeral{height:48px;grid-row:1}
+    .event{grid-column:2;grid-row:1;align-self:center;container-type:normal}
+    .event p{font-size:21px;flex-direction:row;gap:4px}
+    .role{grid-column:3;grid-row:1;justify-self:start;align-self:center;margin:0;font-size:17px;padding:.3em .55em .26em}
+    .name{border-top:4px solid var(--navy);padding:0 12px;height:48px}
+    h1{font-size:44px}
+    .a{flex-direction:row;align-items:center;justify-content:flex-start;gap:.8em;padding:0 12px}
+    .a p,.a>span:last-child{font-size:17px}
+    .yr{font-size:32px;min-width:2.15em;line-height:1}
+    .dyk{padding:5px 12px;flex-direction:row;align-items:baseline;justify-content:flex-start;gap:.6em}
+    .dyk h2{font-size:17px;white-space:nowrap}
+    .aut{border-left:0;padding:5px 12px}
+    .photo{--slant:0%;clip-path:polygon(0 0,100% 0,calc(100% - 22px) 100%,0 100%)}
+    .photo img{inset:0;width:100%;clip-path:polygon(0 0,100% 0,calc(100% - 32px) 100%,0 100%);object-position:40% 10%}
+    .credit{left:0;right:auto;bottom:0}
+  }
+
+  /* ---------- PORTRAIT: the pool turns 90 degrees (vertical lanes) ---------- */
+  @media (orientation:portrait){
+    :root{--n:6;--L:calc(100vw / var(--n));--dir:90deg;--rdir:180deg;
+          --fs:clamp(15px, min(4.1vw, 2.35dvh), 21px)}
+    .poster{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr) auto auto auto auto auto auto auto;
+      grid-template-areas:"mast" "photo" "name" "hero" "a1" "a2" "a3" "dyk" "aut"}
+    .mast{padding:.3em 4vw;gap:0 3vw;align-items:center;
+          display:grid;grid-template-columns:auto 1fr;grid-template-areas:"b t" "k t"}
+    .brand{grid-area:b;font-size:clamp(24px,6.2vw,42px)}
+    .kicker{grid-area:k;font-size:max(11px,calc(var(--fs)*.75));letter-spacing:.14em;line-height:1.1}
+    .mast time{grid-area:t;justify-self:end;text-align:right;white-space:normal;line-height:1;font-size:calc(var(--fs)*1.1)}
+    .photo{--slant:0%;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - clamp(14px,5vw,40px)))}
+    .photo img{inset:0 0 6px 0;width:100%;height:calc(100% - 6px);object-position:42% 5%;
+               clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - clamp(14px,5vw,40px)))}
+    .credit{right:0;left:auto;bottom:calc(clamp(14px,5vw,40px) + 6px)}
+    .name{border-top:0;border-bottom:5px solid var(--navy);padding:.1em 4vw .06em}
+    h1{font-size:min(12.6vw, 7.4dvh, 110px);white-space:normal;line-height:.88}
+    .hero{grid-template-rows:auto;grid-template-columns:auto minmax(0,1fr);padding:2vw 4vw 0;align-items:center;row-gap:2vw;column-gap:3vw}
+    .numeral{height:clamp(34px,7.4dvh,90px);grid-row:1}
+    .event{container-type:normal;grid-column:2;grid-row:1;align-self:center}
+    .event p{font-size:clamp(18px,min(5.6vw,3.9dvh),40px);flex-direction:row;flex-wrap:wrap;gap:.1em .15em}
+    .role{grid-column:1 / -1;grid-row:2;margin:0 0 2vw;font-size:clamp(15px,calc(var(--fs)*1.05),24px);align-self:start;padding:.28em .6em .24em}
+    .a{flex-direction:row;align-items:center;justify-content:flex-start;gap:3vw;padding:.9vw 4vw}
+    .a + .a{border-left:0;border-top:3px solid var(--aqua)}
+    .a p,.a>span:last-child{font-size:var(--fs);line-height:1.2}
+    .yr{font-size:clamp(26px,calc(var(--fs)*2),42px);min-width:2.1em;line-height:1}
+    .dyk{padding:.4em 4vw .45em}
+    .dyk h2{font-size:calc(var(--fs)*1.1)}
+    .aut{border-left:0;border-top:0;padding:.45em 4vw .5em;line-height:1.25}
+  }
+  /* tablets held upright: the name fits on one line */
+  @media (orientation:portrait) and (min-aspect-ratio:3/5){
+    h1{font-size:min(7.7vw, 6dvh);white-space:nowrap}
+    .name{padding:.18em 4vw .12em}
+    .numeral{height:clamp(50px,9dvh,110px)}
+  }
+  /* very short portrait screens: keep every slot, drop the second-line extras */
+  @media (orientation:portrait) and (max-height:640px){
+    .credit{top:0;bottom:auto}
+    .a3 .more,.a3 .long{display:none}
+    .a3 .short{display:inline}
+    .event{display:none}
+    .poster{grid-template-rows:auto minmax(0,1fr) auto auto auto auto auto auto auto}
+    .a{padding:.6vw 4vw}
+    .dyk{padding:.3em 4vw .35em}
+    .aut{padding:.35em 4vw .4em}
+    .yr{font-size:24px}
+    h1{font-size:min(12.6vw, 7dvh)}
+    .hero{row-gap:0}
+    .role{grid-column:2;grid-row:1;align-self:center;justify-self:start;margin:0;font-size:15px;line-height:1.05}
+  }
+</style>
+</head>
+<body>
+<div class="pool" aria-hidden="true" data-bleed></div>
+
+<main class="poster">
+  <header class="mast">
+    <span class="brand">Ausum</span>
+    <span class="kicker">Person of the day</span>
+    <time id="today" datetime="">Today</time>
+  </header>
+
+  <section class="hero" aria-label="Jessica-Jane Applegate">
+    <svg class="numeral" viewBox="0 0 920 400" role="img" aria-label="200" data-bleed>
+      <title>200</title>
+      <g fill="none" stroke="#0a1f44" stroke-width="64" stroke-linejoin="miter">
+        <!-- 2 -->
+        <path d="M32 110 A78 78 0 0 1 188 110 C188 196 32 250 32 368 L220 368"/>
+        <!-- 0 (stadium) at the far right -->
+        <rect x="732" y="32" width="156" height="336" rx="78"/>
+      </g>
+      <!-- 0 as a gold medal -->
+      <g transform="translate(260 0)">
+        <circle cx="200" cy="200" r="200" fill="#ffc21a"/>
+        <circle cx="200" cy="200" r="168" fill="none" stroke="#d99a00" stroke-width="8"/>
+        <circle cx="200" cy="200" r="146" fill="none" stroke="#d99a00" stroke-width="4"/>
+        <g fill="none" stroke="#0a1f44" stroke-width="15" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M92 150 q27 -32 54 0 t54 0 t54 0 t54 0"/>
+          <path d="M92 202 q27 -32 54 0 t54 0 t54 0 t54 0"/>
+          <path d="M92 254 q27 -32 54 0 t54 0 t54 0 t54 0"/>
+        </g>
+        <path d="M70 120 A150 150 0 0 1 130 62" fill="none" stroke="#ffe48a" stroke-width="12" stroke-linecap="round"/>
+      </g>
+    </svg>
+    <div class="event"><p><span>Metres</span> <span>Freestyle</span></p></div>
+    <p class="role">Paralympic swimming champion</p>
+  </section>
+
+  <div class="name"><h1>Jessica-Jane Applegate</h1></div>
+
+  <p class="a a1"><span class="yr" aria-hidden="true">2012</span><span>At 16, she won gold in the 200 metres freestyle at London 2012.</span></p>
+  <p class="a a2"><span class="yr" aria-hidden="true">2021</span><span>She won gold again in Tokyo, swimming in a relay team.</span></p>
+  <p class="a a3"><span class="yr" aria-hidden="true">&times;3</span><span><span class="long">She was world champion three times</span><span class="short">World champion three times</span><span class="more"> and received a royal honour, the MBE</span>.</span></p>
+
+  <div class="dyk"><h2>Did you know?</h2><p>A post box in Norfolk was painted gold to celebrate her win!</p></div>
+  <p class="aut">Jessica-Jane was diagnosed with autism, and she talks about it openly.</p>
+
+  <figure class="photo">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Jessica-Jane_Applegate.jpg?width=900"
+         alt="Jessica-Jane Applegate smiling, with red hair and a Union Jack bow, holding up her gold medal.">
+    <figcaption class="credit">Photo: Richard Gillin, CC BY-SA 2.0, Wikimedia Commons</figcaption>
+  </figure>
+</main>
+
+<script>
+  (function () {
+    try {
+      var d = new Date();
+      var wd = d.toLocaleDateString('en-GB', {weekday: 'long'});
+      var mo = d.toLocaleDateString('en-GB', {month: 'long'});
+      var el = document.getElementById('today');
+      el.textContent = wd + ' ' + d.getDate() + ' ' + mo;
+      el.setAttribute('datetime', d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'));
+    } catch (e) {}
+  })();
+</script>
+</body>
+</html>
